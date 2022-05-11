@@ -3,7 +3,7 @@ io:
   logdir: logs/
   datadir: data/data_dhtlp/
   outdir: results/
-  resume_from: weights/
+  resume_from: training/
   # resume_from: logs/220508-142659-baseline/
   num_workers: 0
   tensorboard_port: 0

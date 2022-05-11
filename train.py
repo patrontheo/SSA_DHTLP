@@ -106,7 +106,8 @@ def main():
 
     if resume_from:
         # checkpoint = torch.load(osp.join(resume_from, "checkpoint_latest.pth"))
-        checkpoint = torch.load(osp.join(resume_from, "checkpoint_latest.pth.tar"), map_location=torch.device('cpu'))
+        # checkpoint = torch.load(osp.join(resume_from, "checkpoint_latest.pth.tar"), map_location=torch.device('cpu'))
+        checkpoint = torch.load(osp.join(resume_from, "checkpoint_latest.pth.tar"))
 
     # 2. model
     ### load vote_index matrix for Hough transform

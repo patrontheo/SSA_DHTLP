@@ -10,4 +10,5 @@
 /*.svg
 img/
 weights/
+training/
 vote_index_128_128_3_1.mat

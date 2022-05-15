@@ -52,6 +52,8 @@ def save_heatmap(prefix, image, lines):
     joff = np.zeros((1, 2) + heatmap_scale, dtype=np.float32)
     lmap = np.zeros(heatmap_scale, dtype=np.float32)
 
+    lines = lines.astype(np.float32)
+
     lines[:, :, 0] = np.clip(lines[:, :, 0] * fx, 0, heatmap_scale[0] - 1e-4)
     lines[:, :, 1] = np.clip(lines[:, :, 1] * fy, 0, heatmap_scale[1] - 1e-4)
     lines = lines[:, :, ::-1]

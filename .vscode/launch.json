@@ -37,11 +37,35 @@
             "console": "integratedTerminal",
             "args": [
                 "config/wireframe.yaml",
-                "-d", "",
-                "logs/ft/checkpoint_best.pth",
-                "--plot"
-                // "data/data_dhtlp"
-                // "logs/ft/npz/000093436"
+                "-d", "0",
+                //"logs/ft/checkpoint_best.pth",
+                "training/checkpoint_latest.pth",
+                "--plot",
+                //"data/data_dhtlp",
+                //"logs/ft/npz/000093436"
+                //"training/npz/000056426"
+            ]
+        },
+
+        {
+            "name": "eval sAP",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/eval-sAP.py",
+            "console": "integratedTerminal",
+            "args": [
+                "training/npz/*"
+            ]
+        },
+
+        {
+            "name": "eval mAPJ",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/eval-mAPJ.py",
+            "console": "integratedTerminal",
+            "args": [
+                "training/npz/*"
             ]
         }
     ]

@@ -129,7 +129,8 @@ def main():
                     for i, ((a, b), s) in enumerate(zip(lines, scores)):
                         if i > 0 and (lines[i] == lines[0]).all():
                             break
-                        plt.plot([a[1], b[1]], [a[0], b[0]], c=c(s), linewidth=4)
+                        plt.plot([a[1], b[1]], [a[0], b[0]], c=c(s), linewidth=1)
+                    plt.imshow(im.round(0).astype(int))
                 plt.show()
 
 

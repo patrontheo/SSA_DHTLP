@@ -39,7 +39,8 @@
                 "config/wireframe.yaml",
                 "-d", "0",
                 //"logs/ft/checkpoint_best.pth",
-                "training/checkpoint_latest.pth",
+                //"training/checkpoint_latest.pth",
+                "training/checkpoint_best.pth",
                 "--plot",
                 //"data/data_dhtlp",
                 //"logs/ft/npz/000093436"
@@ -67,6 +68,20 @@
             "args": [
                 "training/npz/*"
             ]
-        }
+        },
+        
+        {
+            "name": "detect streaks",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/detect_streaks.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-d", "0",
+                "config/wireframe.yaml",
+                "training/checkpoint_best.pth",
+                "img.png"
+            ]
+        },
     ]
 }

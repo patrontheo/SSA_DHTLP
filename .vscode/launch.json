@@ -77,9 +77,10 @@
             "program": "${workspaceRoot}/detect_streaks.py",
             "console": "integratedTerminal",
             "args": [
-                "-d", "0",
+                "-d", "",
                 "config/wireframe.yaml",
-                "training/checkpoint_best.pth",
+                "training/checkpoint_latest.pth.tar",
+                // "training/checkpoint_best.pth",
                 "img.png"
             ]
         },

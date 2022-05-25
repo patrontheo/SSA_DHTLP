@@ -97,7 +97,8 @@ def main():
     model.eval()
 
 
-    data = np.load('data/streaks/streaks_dataset.npz')
+    data = np.load('data/streaks_14_05/streaks_dataset_14_05.npz')
+    # data = np.load('data/streaks/streaks_dataset.npz')
     # data = np.load('data/intensity/intensity_dataset.npz')
     # data = np.load('data/salt_pepper/salt_pepper_dataset.npz')
     imgs = data['x']
@@ -155,7 +156,7 @@ def main():
             axes[0].imshow(im)
             axes[1].imshow(im)
             axes[1].title.set_text('scores={}'.format(scores.round(2)))
-        plt.savefig('data/streaks/{}.png'.format(index1), bbox_inches="tight")
+        plt.savefig('data/streaks_14_05/{}.png'.format(index1), bbox_inches="tight")
         # plt.show()
         plt.close()
 

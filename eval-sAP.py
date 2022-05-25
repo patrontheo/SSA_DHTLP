@@ -80,4 +80,4 @@ if __name__ == "__main__":
     # results = lcnn.utils.parmap(work, dirs)
 
     for d, msAP in zip(dirs, results):
-        print(f"{d}: {msAP[0]:2.1f} {msAP[1]:2.1f} {msAP[2]:2.1f}")
+        print(f"{d}: {msAP[0]:2.2f} {msAP[1]:2.2f} {msAP[2]:2.2f}")

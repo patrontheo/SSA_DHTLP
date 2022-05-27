@@ -24,8 +24,10 @@
             "program": "${workspaceRoot}/dataset/wireframe.py",
             "console": "integratedTerminal",
             "args": [
-                "data/data_dhtlp_raw",
-                "data/data_dhtlp",
+                // "data/data_dhtlp_raw",
+                // "data/data_dhtlp",
+                "data/test",
+                "data/test_processed"
             ]
         },
 

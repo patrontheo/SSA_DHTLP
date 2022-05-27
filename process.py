@@ -131,7 +131,8 @@ def main():
                             break
                         plt.plot([a[1], b[1]], [a[0], b[0]], c=c(s), linewidth=1)
                     plt.imshow(im.round(0).astype(int))
-                plt.show()
+                # plt.show()
+                plt.savefig(osp.join(output_dir, f"{index:06}.png"))
 
 
 cmap = plt.get_cmap("jet")

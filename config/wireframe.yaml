@@ -1,13 +1,13 @@
 io:
   vote_index: vote_index_128_128_3_1.mat
   logdir: logs/
-  datadir: data/data_dhtlp_streaks/
+  datadir: data/data_dhtlp_synthetic_processed/
   outdir: results/
   resume_from: training/
   # resume_from: logs/220508-142659-baseline/
   num_workers: 0
   tensorboard_port: 0
-  validation_interval: 1
+  validation_interval: 4000
 
 model:
   image:

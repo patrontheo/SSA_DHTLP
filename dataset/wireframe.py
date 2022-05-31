@@ -23,6 +23,7 @@ from itertools import combinations
 import cv2
 import numpy as np
 import skimage.draw
+import skimage.transform
 import matplotlib.pyplot as plt
 from docopt import docopt
 from scipy.ndimage import zoom
@@ -103,7 +104,8 @@ def save_heatmap(prefix, image, lines):
     lpos = np.array(lpos, dtype=np.float32)
     lneg = np.array([l[:2] for l in lneg[:2000]], dtype=np.float32)
 
-    image = cv2.resize(image, im_rescale)
+    image = skimage.transform.resize(image, im_rescale) * 255
+    # image = cv2.resize(image, im_rescale)
 
     # plt.subplot(131), plt.imshow(lmap)
     # plt.subplot(132), plt.imshow(image)

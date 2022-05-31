@@ -31,6 +31,7 @@ import yaml
 from docopt import docopt
 import scipy.io as sio
 import pandas as pd
+from tqdm import tqdm
 
 import lcnn
 from lcnn.config import C, M
@@ -109,8 +110,8 @@ def main():
     n_gt = 0
     lcnn_tp, lcnn_fp, lcnn_scores = [], [], []
 
-    for imname in images:
-        print(f"Processing {imname}")
+    for imname in tqdm(images):
+        # print(f"Processing {imname}")
         im = skimage.io.imread(imname)
         if im.ndim == 2:
             im = np.repeat(im[:, :, None], 3, 2)
@@ -184,8 +185,15 @@ def main():
     lcnn_tp = np.cumsum(lcnn_tp[lcnn_index]) / n_gt
     lcnn_fp = np.cumsum(lcnn_fp[lcnn_index]) / n_gt
 
-    print('sAP={}'.format(lcnn.metric.ap(lcnn_tp, lcnn_fp)))
+    sAP = lcnn.metric.ap(lcnn_tp, lcnn_fp)
+
+    print('sAP={}'.format(sAP))
     print('done.')
+
+    with open('result_sAP.txt', 'w') as f:
+        f.write('sAP={}\n'.format(sAP))
+        f.write('tp={}\n'.format(lcnn_tp))
+        f.write('fp={}\n'.format(lcnn_fp))
 
 
 if __name__ == "__main__":

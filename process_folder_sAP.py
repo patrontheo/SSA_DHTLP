@@ -148,7 +148,7 @@ def main():
 
         # postprocess lines to remove overlapped lines
         diag = (im.shape[0] ** 2 + im.shape[1] ** 2) ** 0.5
-        nlines, nscores = postprocess(lines, scores, diag * 0.01, 0.1, False)
+        nlines, nscores = postprocess(lines, scores, diag * 0.01, 0, False)
 
         # sAP
         gt_line = np.array(df[df['filename'] == osp.split(imname)[1]].lines.values[0]).reshape(1,2,2)[:,:,[1,0]]

@@ -20,6 +20,7 @@ import glob
 import pprint
 import random
 import json
+import cv2
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -177,6 +178,8 @@ def main():
             plt.savefig(imname.replace(".png", f"-{t:.02f}.svg"), bbox_inches="tight")
             # plt.show()
             plt.close()
+
+        # cv2.imwrite(osp.splitext(imname)[0] + '_pred.png', skimage.transform.resize(np.rollaxis(H['lmap'].cpu().numpy(), 0, 3)*255, im.shape[:2]))
     
     lcnn_tp = np.concatenate(lcnn_tp)
     lcnn_fp = np.concatenate(lcnn_fp)

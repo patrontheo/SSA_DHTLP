@@ -97,8 +97,8 @@
             "args": [
                 "-d", "0",
                 "config/wireframe.yaml",
-                "weights/training_streaks/checkpoint_best.pth",
-                // "training/checkpoint_best.pth",
+                // "weights/training_streaks/checkpoint_best.pth",
+                "training_synthetic/checkpoint_best.pth",
                 "data/data_dhtlp_streaks"
             ]
         },

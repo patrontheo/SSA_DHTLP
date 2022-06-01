@@ -1,9 +1,9 @@
 io:
   vote_index: vote_index_128_128_3_1.mat
   logdir: logs/
-  datadir: data/data_dhtlp_streaks_synthetic_processed/
+  datadir: data/data_dhtlp_synthetic_processed/
   outdir: results/
-  resume_from: training_streaks/
+  resume_from: training_synthetic/
   # resume_from: logs/220508-142659-baseline/
   num_workers: 0
   tensorboard_port: 0
@@ -65,7 +65,7 @@ model:
 
 optim:
   name: Adam
-  lr: 1.0e-6
+  lr: 2.0e-6
   amsgrad: True
   weight_decay: 1.0e-4
   max_epoch: 10000000

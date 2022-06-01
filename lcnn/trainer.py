@@ -203,10 +203,10 @@ class Trainer(object):
                     + f"| {4 * self.batch_size / (timer() - time):04.1f} "
                 )
                 time = timer()
-            # num_images = self.batch_size * self.iteration
-            # if num_images % self.validation_interval == 0 or num_images == 600:
-            #     self.validate()
-            #     time = timer()
+            #num_images = self.batch_size * self.iteration
+            #if num_images % self.validation_interval == 0: #or num_images == 600:
+            #    self.validate()
+            #    time = timer()
 
     def _write_metrics(self, size, total_loss, prefix, do_print=False):
         for i, metrics in enumerate(self.metrics):
@@ -293,6 +293,7 @@ class Trainer(object):
         for self.epoch in range(start_epoch, self.max_epoch):
             if self.epoch == self.lr_decay_epoch:
                 self.optim.param_groups[0]["lr"] /= 10
+            self.optim.param_groups[0]["lr"] = C.optim.lr
             self.train_epoch()
             self.validate()
 

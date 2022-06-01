@@ -95,7 +95,7 @@ def save_heatmap(prefix, image, lines):
             rr, cc, value = skimage.draw.line_aa(*vint0, *vint1)
             lneg.append([v0, v1, i0, i1, np.average(np.minimum(value, llmap[rr, cc]))])
 
-    assert len(lneg) != 0
+    #assert len(lneg) != 0
     lneg.sort(key=lambda l: -l[-1])
 
     junc = np.array(junc, dtype=np.float32)

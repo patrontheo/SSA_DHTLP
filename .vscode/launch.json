@@ -28,8 +28,8 @@
                 // "data/data_dhtlp",
                 // "data/test",
                 // "data/test_processed",
-                "data/data_dhtlp_streaks",
-                "data/data_dhtlp_streaks_processed",
+                "data/data_dhtlp_streaks_synthetic_2",
+                "data/data_dhtlp_streaks_synthetic_2_processed",
             ]
         },
 

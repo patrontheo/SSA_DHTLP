@@ -95,10 +95,25 @@
             "program": "${workspaceRoot}/process_folder_sAP.py",
             "console": "integratedTerminal",
             "args": [
-                "-d", "0",
+                "-d", "",
                 "config/wireframe.yaml",
                 // "weights/training_streaks/checkpoint_best.pth",
-                "training_synthetic/checkpoint_best.pth",
+                "training_streaks_2/checkpoint_best.pth",
+                "data/data_dhtlp_streaks"
+            ]
+        },
+
+        {
+            "name": "demo folder valid",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/process_folder_sAP_valid.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-d", "",
+                "config/wireframe.yaml",
+                // "weights/training_streaks/checkpoint_best.pth",
+                "training_streaks_2/checkpoint_best.pth",
                 "data/data_dhtlp_streaks"
             ]
         },

@@ -13,6 +13,7 @@ weights/
 training/
 training_old/
 training_streaks/
+training_streaks_2/
 training_synthetic/
 results/
 vote_index_128_128_3_1.mat

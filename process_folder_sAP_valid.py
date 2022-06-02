@@ -104,7 +104,7 @@ def main():
 
     images = glob.glob(args["<images>"][0] + '/images/*.png')
 
-    with open(os.path.join(args["<images>"][0] + '_synthetic', 'valid.json')) as file:
+    with open(os.path.join(args["<images>"][0] + '_synthetic_2', 'valid.json')) as file:
         data = json.load(file)
     df_valid = pd.DataFrame.from_dict(data, orient='columns')
 

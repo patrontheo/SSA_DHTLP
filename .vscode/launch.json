@@ -28,8 +28,8 @@
                 // "data/data_dhtlp",
                 // "data/test",
                 // "data/test_processed",
-                "data/data_dhtlp_streaks_synthetic_2",
-                "data/data_dhtlp_streaks_synthetic_2_processed",
+                "data/data_dhtlp_streaks_synthetic_5",
+                "data/data_dhtlp_streaks_synthetic_5_processed",
             ]
         },
 
@@ -98,7 +98,8 @@
                 "-d", "",
                 "config/wireframe.yaml",
                 // "weights/training_streaks/checkpoint_best.pth",
-                "training_streaks_2/checkpoint_best.pth",
+                // "training_streaks_2/checkpoint_best.pth",
+                "training/checkpoint_latest.pth.tar",
                 "data/data_dhtlp_streaks"
             ]
         },
@@ -110,10 +111,11 @@
             "program": "${workspaceRoot}/process_folder_sAP_valid.py",
             "console": "integratedTerminal",
             "args": [
-                "-d", "0",
+                "-d", "",
                 "config/wireframe.yaml",
                 //"weights/training_synthetic_2e-6/checkpoint_best.pth",
-                "training/checkpoint_latest.pth.tar",
+                // "training/checkpoint_latest.pth.tar",
+                "training_last/checkpoint_best.pth",
                 "data/data_dhtlp_streaks"
             ]
         },

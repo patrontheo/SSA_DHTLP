@@ -4,7 +4,6 @@ io:
   datadir: data/data_dhtlp_streaks_synthetic_2_processed/
   outdir: results/
   resume_from: training_streaks/
-  # resume_from: logs/220508-142659-baseline/
   num_workers: 0
   tensorboard_port: 0
   validation_interval: 50

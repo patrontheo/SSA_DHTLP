@@ -15,6 +15,8 @@ In order to perform the inference on a folder containing images, the file `proce
 
 The argument `--plot` is optional and can be removed to avoid creating images showing the detected lines.  
 
+*path_to_folder* should be the path to a folder containing all the images (the images can be contained in different subfolders). e.g. `data/img` if the images are contained in the folder `img`.
+
 This will create a *csv* file in *path_to_folder* containing the detected lines for all the images.
 
 # Training

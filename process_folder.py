@@ -103,7 +103,7 @@ def main():
     model = model.to(device)
     model.eval()
 
-    images = glob.glob(args["<images>"][0] + '/images/*.png')
+    images = glob.glob(args["<images>"][0] + '/**/*.png', recursive=True)
 
     df = pd.DataFrame(columns = ['filename', 'x1', 'y1', 'x2', 'y2', 'confidence'])
 
@@ -148,7 +148,7 @@ def main():
         diag = (im.shape[0] ** 2 + im.shape[1] ** 2) ** 0.5
         nlines, nscores = postprocess(lines, scores, diag * 0.01, 0, False)
 
-
+        # Creation of dataframe containing all the annotations
         nlines_reshaped = nlines.reshape((-1,4))
         for i, line in enumerate(nlines_reshaped):
             vec = line.tolist()
@@ -162,6 +162,7 @@ def main():
             }
             df = pd.concat([df, pd.DataFrame([insert_row])])
         
+        # possible plotting of the lines with confidence above threshold
         # for i, t in enumerate([0.94, 0.95, 0.96, 0.97, 0.98, 0.99]):
         for i, t in enumerate([0.94]):
             if args['--plot']:

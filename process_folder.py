@@ -12,12 +12,16 @@ Arguments:
 Options:
    -h --help                     Show this screen.
    -d --devices <devices>        Comma seperated GPU devices [default: 0]
+   -p --plot                     Plot the result
 """
 
 import os
 import os.path as osp
+import glob
 import pprint
 import random
+import json
+import cv2
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -28,12 +32,15 @@ import torch
 import yaml
 from docopt import docopt
 import scipy.io as sio
+import pandas as pd
+from tqdm import tqdm
 
 import lcnn
 from lcnn.config import C, M
 from lcnn.models.line_vectorizer import LineVectorizer
 from lcnn.models.multitask_learner import MultitaskHead, MultitaskLearner
 from lcnn.models.HT import hough_transform
+import lcnn.metric
 
 from lcnn.postprocess import postprocess
 from lcnn.utils import recursive_to
@@ -96,17 +103,17 @@ def main():
     model = model.to(device)
     model.eval()
 
+    images = glob.glob(args["<images>"][0] + '/images/*.png')
 
-    data = np.load('data/streaks_14_05_half_pretrained/streaks_dataset_14_05_half.npz')
-    # data = np.load('data/streaks/streaks_dataset.npz')
-    # data = np.load('data/intensity/intensity_dataset.npz')
-    # data = np.load('data/salt_pepper/salt_pepper_dataset.npz')
-    imgs = data['x']
+    df = pd.DataFrame(columns = ['filename', 'x1', 'y1', 'x2', 'y2', 'confidence'])
 
-    for index1, img in enumerate(imgs):
-        f, axes = plt.subplots(1, 2, figsize=(30, 15))
 
-        im = np.repeat(img[:, :], 3, axis=2)
+    for imname in tqdm(images):
+        # print(f"Processing {imname}")
+        im = skimage.io.imread(imname)
+        if im.ndim == 2:
+            im = np.repeat(im[:, :, None], 3, 2)
+        im = im[:, :, :3]
         im_resized = skimage.transform.resize(im, (512, 512)) * 255
         image = (im_resized - M.image.mean) / M.image.stddev
         image = torch.from_numpy(np.rollaxis(image, 2)[None].copy()).float()
@@ -139,26 +146,47 @@ def main():
 
         # postprocess lines to remove overlapped lines
         diag = (im.shape[0] ** 2 + im.shape[1] ** 2) ** 0.5
-        nlines, nscores = postprocess(lines, scores, diag * 0.01, 0.1, False)
+        nlines, nscores = postprocess(lines, scores, diag * 0.01, 0, False)
 
+
+        nlines_reshaped = nlines.reshape((-1,4))
+        for i, line in enumerate(nlines_reshaped):
+            vec = line.tolist()
+            insert_row = {
+                'filename': imname,
+                'x1': vec[0],
+                'y1': vec[1],
+                'x2': vec[2],
+                'y2': vec[3],
+                'confidence': nscores[i]
+            }
+            df = pd.concat([df, pd.DataFrame([insert_row])])
+        
+        # for i, t in enumerate([0.94, 0.95, 0.96, 0.97, 0.98, 0.99]):
         for i, t in enumerate([0.94]):
-            # plt.gca().set_axis_off()
-            # plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
-            # plt.margins(0, 0)
-            for (a, b), s in zip(nlines, nscores):
-                if s < t:
-                    continue
-                axes[1].plot([a[1], b[1]], [a[0], b[0]], c=c(s), linewidth=2, zorder=s)
-                axes[1].scatter(a[1], a[0], **PLTOPTS)
-                axes[1].scatter(b[1], b[0], **PLTOPTS)
-            # plt.gca().xaxis.set_major_locator(plt.NullLocator())
-            # plt.gca().yaxis.set_major_locator(plt.NullLocator())
-            axes[0].imshow(im)
-            axes[1].imshow(im)
-            axes[1].title.set_text('scores={}'.format(scores.round(2)))
-        plt.savefig('data/streaks_14_05_half_pretrained/{}.png'.format(index1), bbox_inches="tight")
-        # plt.show()
-        plt.close()
+            if args['--plot']:
+                plt.gca().set_axis_off()
+                plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
+                plt.margins(0, 0)
+                for (a, b), s in zip(nlines, nscores):
+                    if s < t:
+                        continue
+                    plt.plot([a[1], b[1]], [a[0], b[0]], c=c(s), linewidth=2, zorder=s)
+                    plt.scatter(a[1], a[0], **PLTOPTS)
+                    plt.scatter(b[1], b[0], **PLTOPTS)
+                plt.gca().xaxis.set_major_locator(plt.NullLocator())
+                plt.gca().yaxis.set_major_locator(plt.NullLocator())
+                plt.imshow(im)
+                # plt.title('tp={}, fp={}'.format(tp, fp))
+                plt.savefig(imname.replace(".png", f"-{t:.02f}.svg"), bbox_inches="tight")
+                # plt.show()
+                plt.close()
+            
+    df.to_csv(osp.join(args["<images>"][0], 'annotation.csv'), index=False)
+    
+
+    print('done.')
+
 
 
 if __name__ == "__main__":

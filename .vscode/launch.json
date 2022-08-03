@@ -4,6 +4,15 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        
         {
             "name": "train wireframe",
             "type": "python",
@@ -117,6 +126,37 @@
                 // "training/checkpoint_latest.pth.tar",
                 "training_last/checkpoint_best.pth",
                 "data/data_dhtlp_streaks"
+            ]
+        },
+
+        {
+            "name": "demo",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/demo.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-d", "",
+                "config/wireframe.yaml",
+                "weights/checkpoint.pth.tar",
+                // "logs/ft/checkpoint_latest.pth",
+                "img/split/train_split/Light_ASIImg_0.5sec_Bin1_-9.6C_gain0_2022-05-15_000341_frame0029.png",
+                "img/split/train_split/Light_ASIImg_0.5sec_Bin1_-9.8C_gain0_2022-05-14_232742_frame0008.png"
+            ]
+        },
+
+        {
+            "name": "process_folder",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/process_folder.py",
+            "console": "integratedTerminal",
+            "args": [
+                "-d", "",
+                "config/wireframe.yaml",
+                "weights/checkpoint.pth.tar",
+                "data/test1",
+                // "--plot"
             ]
         },
     ]

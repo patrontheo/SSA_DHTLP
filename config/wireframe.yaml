@@ -1,7 +1,7 @@
 io:
   vote_index: vote_index_128_128_3_1.mat
   logdir: logs/
-  datadir: data/data_dhtlp_streaks_synthetic_2_processed/
+  datadir: img/test/
   outdir: results/
   resume_from: training_streaks/
   num_workers: 0

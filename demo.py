@@ -150,7 +150,7 @@ def main():
             plt.gca().xaxis.set_major_locator(plt.NullLocator())
             plt.gca().yaxis.set_major_locator(plt.NullLocator())
             plt.imshow(im)
-            plt.savefig(imname.replace(".png", f"-{t:.02f}.svg"), bbox_inches="tight")
+            plt.savefig(imname.replace(".png", f"-{t:.02f}_annotated.png"), bbox_inches="tight")
             # plt.show()
             plt.close()
 

@@ -59,7 +59,7 @@ The following command launch the training of the network:
 The file `config/wireframe.yaml` needs to be edited accordingly:  
 * The batch size depends on the GPU memory size.
 * `datadir` is the completely processed dataset.
-* `resume_from` is the folder containing the pretrained weights (that should be named `checkpoint_latest.pth.tar`). This will also be the output folder.
+* `resume_from` is the folder containing the pretrained weights (that should be named `checkpoint_latest.pth.tar`). This will also be the output folder if used.
 * The learning rate is set here to 1e-6 but can be adjusted.
 * The `max_epochs` is currently set to a very large number and the training is manually stopped when the validation loss keep increasing.
 

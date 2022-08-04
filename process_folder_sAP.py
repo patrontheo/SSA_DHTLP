@@ -152,7 +152,7 @@ def main():
         nlines, nscores = postprocess(lines, scores, diag * 0.01, 0, False)
 
         # sAP
-        gt_line = np.array(df[df['filename'] == osp.split(imname)[1]].lines.values[0]).reshape(1,2,2)[:,:,[1,0]]
+        gt_line = np.array(df[df['filename'] == osp.split(imname)[1]].lines.values[0]).reshape(-1,2,2)[:,:,[1,0]]
         tp, fp = lcnn.metric.msTPFP(nlines, gt_line, 5000)
 
         n_gt += len(gt_line)

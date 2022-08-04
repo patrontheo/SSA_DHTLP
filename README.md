@@ -74,6 +74,8 @@ The following command can be used:
 
 This will create a file named `result_sAP.txt` that contains the results.
 
+The file *process_folder_sAP_valid.py* is used to do the same thing but use the validation set of a dataset containing synthetic streaks, and compute the sAP on the same dataset without the synthetic streaks (in order to have the results computed only from the real streaks).
+
 
 
 

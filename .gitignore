@@ -17,5 +17,6 @@ training_streaks/
 training_streaks_2/
 training_synthetic/
 results/
+fine_tuned_weights/
 vote_index_128_128_3_1.mat
 *.pth.tar

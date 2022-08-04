@@ -72,6 +72,8 @@ To use it, the dataset needs to be pre-processed with the pre-processing step de
 The following command can be used:  
 `python process_folder_sAP.py -d 0 config/wireframe.yaml weights/checkpoint_best.pth.tar path_to_data_folder`  
 
+This will create a file named `result_sAP.txt` that contains the results.
+
 
 
 

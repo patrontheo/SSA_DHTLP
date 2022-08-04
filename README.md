@@ -63,7 +63,13 @@ The file `config/wireframe.yaml` needs to be edited accordingly:
 * The `max_epochs` is currently set to a very large number and the training is manually stopped when the validation loss keep increasing.
 
 
+# sAP evaluation
 
+In order to compute the sAP obtained on a given batch of images, the file `process_folder_sAP.py` can be used.  
+To use it, the dataset needs to be pre-processed with the pre-processing step described above: a folder should contain a file named *valid.json* and a subfolder *images* containing all the images (This correspond to the folder 2 in the given sample dataset).
+
+The following command can be used:  
+`python process_folder_sAP.py -d 0 config/wireframe.yaml weights/checkpoint_best.pth.tar path_to_data_folder`  
 
 
 

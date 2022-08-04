@@ -4,7 +4,7 @@
 
 In order to test the algorithm on some images, the `demo.py` can be used as follows:  
 `python demo.py -d 0 config/wireframe.yaml weights/checkpoint.pth.tar path_to_img1.png path_to_img2.png`  
-The arguments are detailed in [DHTLP](https://github.com/yanconglin/Deep-Hough-Transform-Line-Priors).  
+The arguments are detailed in [DHTLP](https://github.com/yanconglin/Deep-Hough-Transform-Line-Priors).  Replace -d 0 by -d "" if you have no GPU.
 
 This will create new png files located in the same folder as the input images and containing the detected streaks. The displayed streaks are the one for which the confidence value is above a fixed threshold (0.94 here).
 
@@ -45,6 +45,7 @@ For now, the input image directory and the output directory are hardcoded in the
 The second processing step is straightforward to perform.  
 The `dataset/wireframe.py` file should be called with the above *output* directory as the new *input* directory, and with a new *output* directory that will contain the completely processed dataset.  
 
+`python dataset/wireframe.py preprocessed_dataset_folder ouptut_folder` 
 The directory created by this step can be used for training.
 
 
